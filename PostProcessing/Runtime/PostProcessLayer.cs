@@ -862,9 +862,17 @@ namespace UnityEngine.Rendering.PostProcessing
                 ApplyDefaultFlip(uberSheet.properties);
             }
 
-            cmd.BlitFullscreenTriangle(context.source, context.destination, uberSheet, 0);
+            if (context.cacheDestinationCopy)
+            {
+                cmd.BlitFullscreenTriangle(context.source, context.destinationCopy, uberSheet, 0);
+                context.source = context.destinationCopy;
+            }
+            else
+            {
+                cmd.BlitFullscreenTriangle(context.source, context.destination, uberSheet, 0);
+                context.source = context.destination;
+            }
 
-            context.source = context.destination;
             context.destination = finalDestination;
 
             if (releaseTargetAfterUse > -1) cmd.ReleaseTemporaryRT(releaseTargetAfterUse);

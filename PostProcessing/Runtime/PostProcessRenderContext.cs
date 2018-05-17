@@ -72,6 +72,11 @@ namespace UnityEngine.Rendering.PostProcessing
         // Source target (can't be the same as destination)
         public RenderTargetIdentifier source { get; set; }
 
+        // Source target (can't be the same as destination)
+        public RenderTargetIdentifier destinationCopy { get; set; }
+
+        public bool cacheDestinationCopy { get; set; }
+
         // Destination target (can't be the same as source)
         public RenderTargetIdentifier destination { get; set; }
 
