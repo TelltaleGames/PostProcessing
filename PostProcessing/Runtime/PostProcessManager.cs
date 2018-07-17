@@ -285,7 +285,7 @@ namespace UnityEngine.Rendering.PostProcessing
 
             // If no trigger is set, only global volumes will have influence
             int mask = postProcessLayer.volumeLayer.value;
-            var volumeTrigger = postProcessLayer.volumeTrigger;
+            var volumeTrigger = camera.cameraType == CameraType.SceneView ? camera.transform : postProcessLayer.volumeTrigger;
             bool onlyGlobal = volumeTrigger == null;
             var triggerPos = onlyGlobal ? Vector3.zero : volumeTrigger.position;
 
